@@ -1,0 +1,186 @@
+package com.kh.post.model.dao;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Properties;
+
+import com.kh.common.JDBCTemplate;
+import com.kh.common.model.vo.Attachment;
+import com.kh.common.model.vo.PageInfo;
+import com.kh.post.model.vo.Post;
+
+public class PostDao {
+
+    private Properties prop = new Properties();
+	
+	public PostDao() {
+		String fileName = PostDao.class.getResource("/sql/post/post-mapper.xml").getPath();
+		try {
+			prop.loadFromXML(new FileInputStream(fileName));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public int selectReviewListCount(Connection conn) {
+		
+        int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset =  null;
+		String sql = prop.getProperty("selectReviewListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt("COUNT");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+
+	}
+
+	public ArrayList<Post> selectReviewList(Connection conn, PageInfo pi) {
+		
+        ArrayList<Post> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReviewList");
+		
+		int startRow = (pi.getCurrentPage() - 1) * pi.getPostLimit() + 1;
+		int endRow = startRow + pi.getPostLimit() - 1;
+		
+		System.out.println(startRow);
+		System.out.println(endRow);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Post po = new Post();
+
+                po.setPostNo(rset.getInt("POST_NO"));
+                po.setPostTitle(rset.getString("POST_TITLE"));
+                po.setPostContent(rset.getString("POST_CONTENT"));
+                po.setMemberNickname(rset.getString("MEMBER_NICKNAME"));
+                po.setPostView(rset.getInt("POST_VIEW"));
+                po.setPostDate(rset.getDate("POST_DATE"));
+				
+				list.add(po);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
+
+    public int increaseCount(Connection conn, int postNum) {
+        
+        int result = 0;
+        PreparedStatement pstmt = null;
+        String sql = prop.getProperty("increaseCount");
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, postNum);
+            
+            result = pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTemplate.close(pstmt);
+        }
+        return result;
+    }
+
+	public Post selectPost(Connection conn, int postNo) {
+		
+		Post p = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectPost");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, postNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				p = new Post();
+				
+				p.setPostNo(rset.getInt("POST_NO"));
+				p.setPostTitle(rset.getString("POST_TITLE"));
+				p.setPostContent(rset.getString("POST_CONTENT"));
+				p.setMemberNickname(rset.getString("MEMBER_NICKNAME"));
+				p.setPostView(rset.getInt("POST_VIEW"));
+				p.setPostDate(rset.getDate("POST_DATE"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return p;
+	}
+
+	public Attachment selectAttachment(Connection conn, int postNo) {
+		
+		Attachment at = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, postNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				at = new Attachment();
+				
+				at.setFileNo(rset.getInt("FILE_NO"));
+				at.setPostNo(rset.getInt("POST_NO"));
+				at.setOriginName(rset.getString("FILE_NAME"));
+				at.setFilePath(rset.getString("FILE_PATH"));
+				at.setFileLevel(rset.getInt("FILE_LEVEL"));
+				at.setChangeName(rset.getString("FILE_CHANGE_NAME"));
+				at.setFileDate(rset.getDate("UPLOAD_DATE"));
+				at.setStatus(rset.getString("FILE_STATUS"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return at;
+	}
+
+}

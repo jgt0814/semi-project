@@ -1,0 +1,37 @@
+package com.kh.post.model.service;
+
+import static com.kh.common.JDBCTemplate.*;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+
+import com.kh.common.model.vo.PageInfo;
+import com.kh.post.model.vo.Post;
+
+public class PostService {
+
+	public int selectReviewListCount() {
+        
+        Connection conn = getConnection();
+        
+        int result = new BoardDao().selectReviewListCount(conn);
+        
+        close(conn);
+        
+        return result;
+	}
+	
+	public ArrayList<Post> selectReviewList(PageInfo pi) {
+		
+        Connection conn = getConnection();
+        
+        ArrayList<Post> list = new BoardDao().selectReviewList(conn, pi);
+        
+        close(conn);
+        
+        return list;
+	}
+
+	
+
+}

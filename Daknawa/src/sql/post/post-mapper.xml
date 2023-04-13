@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+    <entry key="selectReviewListCount">
+		SELECT COUNT(*) COUNT
+	      FROM POST
+	     WHERE STATUS = 'Y'
+	       AND POST_CAT_NO = 3
+	</entry>
+
+    <entry key="selectReviewList">
+        SELECT *
+FROM (
+      SELECT ROWNUM RNUM, A.*
+        FROM (SELECT POST_NO, POST_TITLE, POST_CONTENT, MEMBER_NICKNAME, POST_VIEW, POST_DATE
+        FROM POST P
+        JOIN POST_CATEGORY USING (POST_CAT_NO)
+        JOIN MEMBER USING (MEMBER_NO)
+       WHERE POST_CAT_NO = 3
+         AND P.STATUS = 'Y'
+       ORDER BY POST_NO DESC) A
+     ) 
+        WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+    <entry key="increaseCount">
+		UPDATE POST
+		   SET POST_VIEW = POST_VIEW + 1
+		 WHERE POST_NO = ?
+		   AND STATUS = 'Y'
+	</entry>
+
+    <entry key="selectPost">
+    SELECT POST_NO
+			 , POST_TITLE
+			 , POST_CONTENT
+			 , MEMBER_NICKNAME
+			 , POST_VIEW
+			 , POST_DATE
+		  FROM POST P
+		  JOIN MEMBER USING (MEMBER_NO)
+		 WHERE POST_NO = ?
+       AND P.STATUS = 'Y'
+       AND POST_CAT_NO = 3
+    </entry>
+
+    <entry key="selectAttachment">
+   SELECT FILE_NO, 
+   ORIGIN_NAME, 
+   CHANGE_NAME, 
+   FILE_PATH,
+   FILE_LEVEL
+		  FROM ATTACHMENT
+		 WHERE POST_NO = ?
+    </entry>
+</properties>

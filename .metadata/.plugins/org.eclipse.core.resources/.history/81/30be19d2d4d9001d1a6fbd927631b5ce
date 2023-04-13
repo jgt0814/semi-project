@@ -1,0 +1,88 @@
+package com.kh.post.model.vo;
+import java.sql.Date;
+public class Post {
+	private int postNo;			//	POST_NO	NUMBER
+	private String MemberNickname;		//	MEMBER_NO	NUMBER
+	private String postTitle;	//	POST_TITLE	VARCHAR2(200 BYTE)
+	private String postContent;	//	POST_CONTENT	VARCHAR2(4000 BYTE)
+	private int postView;		//	POST_VIEW	NUMBER
+	private Date postDate;		//	POST_DATE	DATE
+	private String postDel;		//	POST_DEL	CHAR(1 BYTE)
+	private int postCatNo;		//	POST_CAT_NO	NUMBER
+	
+	public Post() {
+		super();
+	}
+	public Post(int postNo, String memberNickname, String postTitle, String postContent, int postView, Date postDate,
+			String postDel, int postCatNo) {
+		super();
+		this.postNo = postNo;
+		MemberNickname = memberNickname;
+		this.postTitle = postTitle;
+		this.postContent = postContent;
+		this.postView = postView;
+		this.postDate = postDate;
+		this.postDel = postDel;
+		this.postCatNo = postCatNo;
+	}
+	public int getPostNo() {
+		return postNo;
+	}
+	public void setPostNo(int postNo) {
+		this.postNo = postNo;
+	}
+	public String getMemberNickname() {
+		return MemberNickname;
+	}
+	public void setMemberNickname(String memberNickname) {
+		MemberNickname = memberNickname;
+	}
+	public String getPostTitle() {
+		return postTitle;
+	}
+	public void setPostTitle(String postTitle) {
+		this.postTitle = postTitle;
+	}
+	public String getPostContent() {
+		return postContent;
+	}
+	public void setPostContent(String postContent) {
+		this.postContent = postContent;
+	}
+	public int getPostView() {
+		return postView;
+	}
+	public void setPostView(int postView) {
+		this.postView = postView;
+	}
+	public Date getPostDate() {
+		return postDate;
+	}
+	public void setPostDate(Date postDate) {
+		this.postDate = postDate;
+	}
+	public String getPostDel() {
+		return postDel;
+	}
+	public void setPostDel(String postDel) {
+		this.postDel = postDel;
+	}
+	public int getPostCatNo() {
+		return postCatNo;
+	}
+	public void setPostCatNo(int postCatNo) {
+		this.postCatNo = postCatNo;
+	}
+	@Override
+	public String toString() {
+		return "Post [postNo=" + postNo + ", MemberNickname=" + MemberNickname + ", postTitle=" + postTitle
+				+ ", postContent=" + postContent + ", postView=" + postView + ", postDate=" + postDate + ", postDel="
+				+ postDel + ", postCatNo=" + postCatNo + "]";
+	}
+	
+	
+	
+	}
+}
+	
+	

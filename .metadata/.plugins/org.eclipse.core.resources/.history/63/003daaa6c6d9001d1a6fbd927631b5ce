@@ -1,0 +1,33 @@
+package com.kh.post.model.dao;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+
+import com.kh.common.model.vo.PageInfo;
+import com.kh.post.model.vo.Post;
+
+public class PostDao {
+
+    private Properties prop = new Properties();
+	
+	public BoardDao() {
+		String fileName = PostDao.class.getResource("/sql/post/post-mapper.xml").getPath();
+		try {
+			prop.loadFromXML(new FileInputStream(fileName));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public int selectReviewListCount(Connection conn) {
+		
+
+	}
+
+	public ArrayList<Post> selectReviewList(Connection conn, PageInfo pi) {
+		
+
+	}
+
+
+}

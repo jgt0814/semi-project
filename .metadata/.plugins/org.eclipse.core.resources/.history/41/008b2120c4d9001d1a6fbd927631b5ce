@@ -1,0 +1,23 @@
+package com.kh.post.model.service;
+
+import static com.kh.common.JDBCTemplate.*;
+
+import java.util.ArrayList;
+
+import com.kh.common.model.vo.PageInfo;
+import com.kh.post.model.vo.Post;
+
+public class PostService {
+
+	public ArrayList<Post> selectReviewList(PageInfo pi) {
+		
+        Connection conn = getConnection();
+		
+		int result = new BoardDao().selectReviewList(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+}
