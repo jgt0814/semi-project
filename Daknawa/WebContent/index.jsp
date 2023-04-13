@@ -9,6 +9,9 @@
 <body>
 
 	<%@ include file="views/common/menubar.jsp"%>
+	
+	<%@ include file="views/common/mainPage.jsp"%>
+	
 </body>
 </html>
 
