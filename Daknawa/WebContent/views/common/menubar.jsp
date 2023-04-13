@@ -197,63 +197,73 @@ div {
 	href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap"
 	data-tag="font" />
 <link rel="stylesheet" href="./style.css" />
-<link href="resources/css/navbar11.css" rel="stylesheet" />
 </head>
 <body>
 	<div>
-		<div class="navbar11-navbar1">
-			<div class="navbar11-container1">
-				<img onclick="location.href='<%= contextPath %>'" style="cursor: pointer"
-					src="resources/css/logoimg+logoname.png" alt="logoI204"
-					class="navbar11-logo" />
-				<div class="navbar11-column1">
-					<div class="navbar11-column2">
-						<span onclick="location.href='#1'"
-							class="navbar11-text TextRegularNormal" style="cursor: pointer">
+		<link href="resources/css/navbar11.css" rel="stylesheet" />
+
+		<div class="navbar11-container" style="height: 56px">
+			<div class="navbar11-navbar1">
+				<div class="navbar11-container1">
+					<img onclick="location.href='#'" style="cursor: pointer"
+						src="resources/css/logoimg+logoname.png" alt="logoI204"
+						class="navbar11-logo" />
+					<div class="navbar11-column1">
+						<div class="navbar11-column2">
+							<span onclick="location.href='#1'"
+								class="navbar11-text TextRegularNormal" style="cursor: pointer">
+								<div class="dropdown">
+									<button class="btn btn-secondary dropdown-toggle"
+										style="background-color: rgba(64, 81, 59, 1); border: 0px; border-radius: 0px;"
+										type="button" id="dropdownMenuButton1"
+										data-bs-toggle="dropdown" aria-expanded="false">
+										게시판</button>
+									<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+										<li><a class="dropdown-item" href="#">자유 게시판</a></li>
+										<li><a class="dropdown-item" href="#">사진 게시판</a></li>
+
+									</ul>
+								</div>
+
+								<div></div>
+							</span>
+							<div class="dropdown">
+								<button class="btn btn-secondary"
+								onclick="location.href='<%= contextPath %>/menu.mn'"
+									style="background-color: rgba(64, 81, 59, 1); border: 0px; border-radius: 0px;"
+									type="button" id="dropdownMenuButton1"
+									data-bs-toggle="dropdown" aria-expanded="false">
+									메뉴 정보</button>
+
+							</div>
+							<div class="dropdown">
+								<button class="btn btn-secondary"
+									style="background-color: rgba(64, 81, 59, 1); border: 0px; border-radius: 0px;"
+									type="button" id="dropdownMenuButton1"
+									data-bs-toggle="dropdown" aria-expanded="false">
+									매장 정보</button>
+							</div>
+
 							<div class="dropdown">
 								<button class="btn btn-secondary dropdown-toggle"
 									style="background-color: rgba(64, 81, 59, 1); border: 0px; border-radius: 0px;"
 									type="button" id="dropdownMenuButton1"
-									data-bs-toggle="dropdown" aria-expanded="false">게시판</button>
+									data-bs-toggle="dropdown" aria-expanded="false">
+									더보기</button>
 								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-									<li><a class="dropdown-item" href="#">자유 게시판</a></li>
-									<li><a class="dropdown-item" href="#">사진 게시판</a></li>
+									<li><a class="dropdown-item" href="#">마이 페이지</a></li>
+									<li><a class="dropdown-item" href="#">문의 하기</a></li>
+
 								</ul>
 							</div>
-						</span>
-						<div class="dropdown">
-							<button class="btn btn-secondary"
-								onclick="location.href='<%= contextPath %>/menu.mn'"
-								style="background-color: rgba(64, 81, 59, 1); border: 0px; border-radius: 0px;"
-								type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-								aria-expanded="false">메뉴 정보</button>
-
 						</div>
-						<div class="dropdown">
-							<button class="btn btn-secondary"
-								style="background-color: rgba(64, 81, 59, 1); border: 0px; border-radius: 0px;"
-								type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-								aria-expanded="false">매장 정보</button>
+						<div class="navbar11-column3">
+							<button onclick="location.href='<%= contextPath %>/login.me'"
+								class="navbar11-button" style="cursor: pointer">
+								<span class="navbar11-text08 TextRegularNormal"> <span>로그인</span>
+								</span>
+							</button>
 						</div>
-
-						<div class="dropdown">
-							<button class="btn btn-secondary dropdown-toggle"
-								style="background-color: rgba(64, 81, 59, 1); border: 0px; border-radius: 0px;"
-								type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-								aria-expanded="false">더보기</button>
-							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-								<li><a class="dropdown-item" href="#">마이 페이지</a></li>
-								<li><a class="dropdown-item" href="#">문의 하기</a></li>
-
-							</ul>
-						</div>
-					</div>
-					<div class="navbar11-column3">
-						<button onclick="location.href='<%= contextPath %>/login.me'"
-							class="navbar11-button" style="cursor: pointer">
-							<span class="navbar11-text08 TextRegularNormal"> <span>로그인</span>
-							</span>
-						</button>
 					</div>
 				</div>
 			</div>
